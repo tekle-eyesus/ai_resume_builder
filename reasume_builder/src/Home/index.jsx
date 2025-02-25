@@ -3,7 +3,7 @@ import Header from "../header/index";
 function Home() {
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       landing page
     </div>
   );

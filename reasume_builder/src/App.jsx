@@ -1,6 +1,5 @@
 import { useUser } from "@clerk/clerk-react";
 import "./App.css";
-
 import { Navigate, Outlet } from "react-router";
 import Header from "./header";
 
@@ -13,6 +12,7 @@ function App() {
 
   return (
     <>
+      <Header />
       <Outlet />
     </>
   );
