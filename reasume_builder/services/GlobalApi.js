@@ -12,7 +12,9 @@ const axiosClient = axios.create({
 });
 
 const createReasume = (data) => axiosClient.post("/user-resumes", data);
-
+const getUserResume = (userEmail) =>
+  axiosClient.get("/user-resumes?filters[userEmail][$eq]=" + userEmail);
 export default {
   createReasume,
+  getUserResume,
 };

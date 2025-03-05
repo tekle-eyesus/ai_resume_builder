@@ -43,7 +43,7 @@ function addResume() {
   return (
     <div>
       <div
-        className='p-14 border h-[250px] flex justify-center items-center rounded-md bg-gray-100 mt-5 cursor-pointer hover:scale-105 transition-all duration-300 hover:shadow-md'
+        className='p-14 mr-2 border h-[250px] flex justify-center items-center rounded-md bg-gray-100 mt-5 cursor-pointer hover:scale-105 transition-all duration-300 hover:shadow-md'
         onClick={() => setIsOpen(true)}
       >
         <PlusCircle />

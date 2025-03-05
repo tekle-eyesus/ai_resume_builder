@@ -1,6 +1,24 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import AddResume from "./components/addResume";
+import { useUser } from "@clerk/clerk-react";
+import GlobalApi from "../../services/GlobalApi";
+import ResumeItem from "./components/resumeItem";
 function Dashboard() {
+  const { user } = useUser();
+  const [userResumeList, setUserResumeList] = useState([]);
+  useEffect(() => {
+    user && getUserResumeList();
+  }, [user]);
+
+  // get user data
+  const getUserResumeList = () => {
+    GlobalApi.getUserResume(user?.primaryEmailAddress?.emailAddress).then(
+      (resp) => {
+        setUserResumeList(resp.data.data);
+      }
+    );
+  };
+
   return (
     <div className='p-10 md:px-20 lg:px-32'>
       {/* <Header /> */}
@@ -8,6 +26,10 @@ function Dashboard() {
       <p>Create your stunning resume with AI.</p>
       <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5'>
         <AddResume />
+        {userResumeList &&
+          userResumeList.map((resume, index) => (
+            <ResumeItem resume={resume} key={index} />
+          ))}
       </div>
     </div>
   );
