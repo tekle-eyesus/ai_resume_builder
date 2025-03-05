@@ -9,6 +9,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 function addResume() {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,14 +26,20 @@ function addResume() {
       <Dialog open={isOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Are you absolutely sure?</DialogTitle>
+            <DialogTitle>Create New Resume</DialogTitle>
             <DialogDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
+              <p>Add your resume title</p>
+              <Input
+                placeholder='Ex. Machine learning Expert'
+                className='my-4'
+              />
             </DialogDescription>
-            <div>
+
+            <div className='space-x-2 flex items-center justify-end'>
+              <Button className='bg-gray-300' onClick={() => setIsOpen(false)}>
+                cancel
+              </Button>
               <Button>create</Button>
-              <Button>close</Button>
             </div>
           </DialogHeader>
         </DialogContent>
