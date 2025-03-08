@@ -13,12 +13,14 @@ import { Input } from "@/components/ui/input";
 import { v4 as uuidv4 } from "uuid";
 import { useUser } from "@clerk/clerk-react";
 import GlobalApi from "../../../services/GlobalApi";
+import { useNavigate } from "react-router";
 
 function addResume() {
   const [isOpen, setIsOpen] = useState(false);
   const [resumeTitle, setResumeTitle] = useState("");
   const { user } = useUser();
   const [isLoading, setIsLoading] = useState(false);
+  const navigation = useNavigate();
 
   const onCreate = () => {
     setIsLoading(true);
@@ -36,6 +38,7 @@ function addResume() {
       console.log("result from the API", res);
       if (res) {
         setIsLoading(false);
+        navigation(`/dashboard/resume/${uuid}/edit`);
       }
     });
   };
