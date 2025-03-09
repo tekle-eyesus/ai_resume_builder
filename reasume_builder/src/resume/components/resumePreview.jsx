@@ -3,6 +3,7 @@ import PersonalDetail from "../preview/personalDetail";
 import resumeInfoContext from "@/context/resumeInfoContext";
 import SummeryPreview from "../preview/SummeryPreview";
 import ExpriencePreview from "../preview/ExpriencePreview";
+import EducationPreview from "../preview/EducationPreview";
 
 function ResumePreview() {
   const { resumeInfo, setResumeInfo } = useContext(resumeInfoContext);
@@ -16,6 +17,7 @@ function ResumePreview() {
       <PersonalDetail resumeInfo={resumeInfo} />
       <SummeryPreview resumeInfo={resumeInfo} />
       <ExpriencePreview resumeInfo={resumeInfo} />
+      <EducationPreview resumeInfo={resumeInfo} />
     </div>
   );
 }
