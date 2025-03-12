@@ -19,13 +19,13 @@ function PersonalDetail({ resumeInfo }) {
 
       <div className='flex  justify-evenly mt-2'>
         <h1 className='text-sm' style={{ color: resumeInfo?.themeColor }}>
-          tekle@emial.com
+          {resumeInfo?.email}
         </h1>
         <h1 className='text-sm' style={{ color: resumeInfo?.themeColor }}>
-          +2519304545
+          {resumeInfo?.phone}
         </h1>
         <h1 className='text-sm' style={{ color: resumeInfo?.themeColor }}>
-          github link{" "}
+          github
         </h1>
       </div>
       <hr

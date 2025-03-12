@@ -5,6 +5,8 @@ import { ArrowLeft, ArrowRight, LayoutGrid } from "lucide-react";
 
 function ResumeForm() {
   const [activeFormIndex, setActiveFormIndex] = useState(1);
+  const [enableNext, setEnableNext] = useState(false);
+
   return (
     <div>
       <div className='flex justify-between items-center mb-2'>
@@ -21,17 +23,22 @@ function ResumeForm() {
               <ArrowLeft /> back
             </Button>
           )}
+
           <Button
-            variant='outline'
+            // variant='outline'
+            // className='bg-blue-500 text-white hover:bg-blue-600'
             size='sm'
             onClick={() => setActiveFormIndex(activeFormIndex + 1)}
+            disabled={enableNext}
           >
             Next <ArrowRight />
           </Button>
         </div>
       </div>
       {/* personel detail and summery */}
-      {activeFormIndex == 1 ? <PersonelDetail /> : null}
+      {activeFormIndex == 1 ? (
+        <PersonelDetail enableNext={setEnableNext} />
+      ) : null}
       {/* experience */}
       {/* education */}
       {/* skills  */}
