@@ -8,6 +8,7 @@ function Dashboard() {
   const { user } = useUser();
   const [userResumeList, setUserResumeList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     setIsLoading(true);
     user && getUserResumeList();

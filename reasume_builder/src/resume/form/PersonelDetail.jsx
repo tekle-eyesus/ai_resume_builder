@@ -1,23 +1,53 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import resumeInfoContext from "@/context/resumeInfoContext";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import { useParams } from "react-router";
+import GlobalApi from "../../../services/GlobalApi";
+import { LoaderCircle } from "lucide-react";
 
 function PersonelDetail({ enableNext }) {
+  const params = useParams();
   const { resumeInfo, setResumeInfo } = useContext(resumeInfoContext);
+  const [formData, setFormData] = useState();
+  const [isLoading, setIsloading] = useState(false);
+
   const handleInputChange = (e) => {
     enableNext(true);
     const { name, value } = e.target;
+
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
 
     setResumeInfo({
       ...resumeInfo,
       [name]: value,
     });
   };
+
   const onSubmit = (e) => {
+    setIsloading(true);
     enableNext(false);
     e.preventDefault();
+
+    // insert to postgres database
+    const data = {
+      data: formData,
+    };
+    GlobalApi.updateResume(params.resumeId, data).then(
+      (res) => {
+        setIsloading(false);
+        // console.log(res.data);
+      },
+      (error) => {
+        console.log(error);
+        setIsloading(false);
+      }
+    );
   };
+
   return (
     <div className='rounded-md border-t-primary border-t-4 p-2 shadow-md'>
       <h2 className='font-bold text-xl font-sans'>Personnel Detail</h2>
@@ -51,8 +81,13 @@ function PersonelDetail({ enableNext }) {
           </div>
         </div>
         <div className='flex justify-end my-4'>
-          <Button size='sm' variant='outline' type='submit'>
-            Save
+          <Button
+            disabled={isLoading}
+            size='sm'
+            variant='outline'
+            type='submit'
+          >
+            {isLoading ? <LoaderCircle className='animate-spin' /> : "Save"}
           </Button>
         </div>
       </form>
